@@ -7,24 +7,72 @@
     <style>
         body { font-family: sans-serif; line-height: 1.6; padding: 20px; max-width: 800px; margin: 0 auto; }
         h1, h2 { color: #333; }
+
+        /* 二维码样式 */
+        .qr-section {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            align-items: flex-start;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+        .qr-card {
+            text-align: center;
+            max-width: 260px;
+        }
+        .qr-card img.qr {
+            width: 220px;
+            height: 220px;
+            max-width: 40vw;
+            max-height: 40vw;
+            object-fit: contain;
+            border: 1px solid #e0e0e0;
+            padding: 8px;
+            background: #fff;
+            border-radius: 6px;
+        }
+        .qr-caption {
+            margin-top: 8px;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        /* 在窄屏上让布局更友好 */
+        @media (max-width: 480px) {
+            .qr-card img.qr { width: 160px; height: 160px; }
+        }
     </style>
 </head>
 <body>
     <h1>关于本应用</h1>
-    <p>这是一个公益辅助App，对于沉迷者而言，直接的劝戒往往收效甚微。唯有帮助其自主矫正认知，促其自我觉醒才能彻底戒除，回归正常生活。如此则善莫大焉。</p>
+    <p>这是一个公益辅助App，对于沉迷者而言，直接的劝戒往往收效甚微。唯有帮助其自主矫正认知，促其自我觉醒才能彻底戒除，回归正常生活。如[...]</p>
     
     <h2>1. 隐私政策</h2>
     <p>此App不收集任何用户信息和设备信息，无需联网、注册，无需登录，激活，亦不接任何广告，所有数据仅保存在本机。</p>
 
     <h2>2. 版权声明</h2>
-    <p>本软件为免费公益App，本软件及其源代码的著作权归软件作者所有，受相关法律保护。您可自由免费使用或复制，但禁止对软件进行任何修改、再发行、出售、反向工程、破解或用于任何商业目的。否则以侵权论，并依法追究法律责任。</p>
+    <p>本软件为免费公益App，本软件及其源代码的著作权归软件作者所有，受相关法律保护。您可自由免费使用或复制，但禁止对软件进行任何修改、[...]</p>
 
     <h2>3. 免责声明</h2>
-    <p>本软件及作者并不对本软件所载的资料信息，包括但不限于文本、图片、数据、观点、建议等材料和内容的准确性、完整性、充分性和可靠性作出保证，也不对这些材料和内容作出任何明示或默示的的保证，并且明确声明不对这些材料和内容的错误或遗漏承担责任。</p>
-    <p>请务必从正规应用商店下载安装本软件，用户下载后应自行采取必要的安全防护措施。本软件及作者不承担因您使用或不能使用此软件，或使用经第三方破解/出售的软件所导致的任何直接、间接或意外的损害责任，也不承担因您违反本声明或触犯中华人民共和国法律而引起的任何法律责任。</p>
-    <p>如您不同意本声明的任何条款，请立即停止使用并卸载本软件。您继续使用本软件的功能或使用的任何行为，均被视为您已充分阅读、理解并无条件接受本声明的全部内容。</p>
+    <p>本软件及作者并不对本软件所载的资料信息，包括但不限于文本、图片、数据、观点、建议等材料和内容的准确性、完整性、充分性和可靠性作[...]</p>
+    <p>请务必从正规应用商店下载安装本软件，用户下载后应自行采取必要的安全防护措施。本软件及作者不承担因您使用或不能使用此软件，或使用[...]</p>
+    <p>如您不同意本声明的任何条款，请立即停止使用并卸载本软件。您继续使用本软件的功能或使用的任何行为，均被视为您已充分阅读、理解并无[...]</p>
 
     <h2>4. 自愿捐助</h2>
     <p>本软件可自由免费使用，如果您也认同此理念并愿意支持公益，可自愿扫码捐助，所得捐助款项将继续用于公益以及流浪动物救助。</p>
+
+    <!-- 二维码区块 -->
+    <div class="qr-section" aria-label="捐助与关注二维码">
+        <figure class="qr-card">
+            <img class="qr" src="assets/qrcodes/qr_donate.png" alt="捐助二维码 - 扫码支持公益" loading="lazy" />
+            <figcaption class="qr-caption">扫码捐助（用于公益与流浪动物救助）</figcaption>
+        </figure>
+
+        <figure class="qr-card">
+            <img class="qr" src="assets/qrcodes/qr_animals.png" alt="关注与反馈二维码 - 扫码关注我们" loading="lazy" />
+            <figcaption class="qr-caption">扫码关注/反馈（更多信息和联系渠道）</figcaption>
+        </figure>
+    </div>
 </body>
 </html>
