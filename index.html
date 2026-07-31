@@ -8,6 +8,37 @@
         body { font-family: sans-serif; line-height: 1.6; padding: 20px; max-width: 800px; margin: 0 auto; }
         h1, h2 { color: #333; }
 
+        /* 语言切换按钮 */
+        .lang-switch {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            z-index: 1000;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            display: flex;
+        }
+        .lang-switch button {
+            background: transparent;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #333;
+        }
+        .lang-switch button.active {
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        .lang-switch button:focus {
+            outline: 3px solid #9fd3ff;
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
         /* 二维码样式 */
         .qr-section {
             display: flex;
@@ -41,38 +72,186 @@
         /* 在窄屏上让布局更友好 */
         @media (max-width: 480px) {
             .qr-card img.qr { width: 160px; height: 160px; }
+            body { padding-top: 56px; }
+            .lang-switch { top: 8px; right: 8px; }
         }
+
+        /* 隐藏与显示内容 */
+        .lang-content { display: none; }
+        .lang-content.active { display: block; }
     </style>
 </head>
 <body>
-    <h1>关于本应用</h1>
-    <p>这是一个公益辅助App，对于沉迷者而言，直接的劝戒往往收效甚微。唯有帮助其自主矫正认知，促其自我觉醒才能彻底戒除，回归正常生活。如此则善莫大焉。</p>
-    
-    <h2>1. 隐私政策</h2>
-    <p>此App不收集任何用户信息和设备信息，无需联网、注册，无需登录，激活，亦不接任何广告，所有数据仅保存在本机。</p>
-
-    <h2>2. 版权声明</h2>
-    <p>本软件为免费公益App，本软件及其源代码的著作权归软件作者所有，受相关法律保护。您可自由免费使用或复制，但禁止对软件进行任何修改、再发行、出售、反向工程、破解或用于任何商业目的。否则以侵权论，并依法追究法律责任。</p>
-
-    <h2>3. 免责声明</h2>
-    <p>本软件及作者并不对本软件所载的资料信息，包括但不限于文本、图片、数据、观点、建议等材料和内容的准确性、完整性、充分性和可靠性作出保证，也不对这些材料和内容作出任何明示或默示的的保证，并且明确声明不对这些材料和内容的错误或遗漏承担责任。</p>
-    <p>请务必从正规应用商店下载安装本软件，用户下载后应自行采取必要的安全防护措施。本软件及作者不承担因您使用或不能使用此软件，或使用经第三方破解/出售的软件所导致的任何直接、间接或意外的损害责任，也不承担因您违反本声明或触犯中华人民共和国法律而引起的任何法律责任。</p>
-    <p>如您不同意本声明的任何条款，请立即停止使用并卸载本软件。您继续使用本软件的功能或使用的任何行为，均被视为您已充分阅读、理解并无条件接受本声明的全部内容。</p>
-
-    <h2>4. 自愿捐助</h2>
-    <p>本软件可自由免费使用，如果您也认同此理念并愿意支持公益，可自愿扫码捐助，所得捐助款项将继续用于公益以及流浪动物救助。</p>
-
-    <!-- 二维码区块 -->
-    <div class="qr-section" aria-label="捐助与关注二维码">
-        <figure class="qr-card">
-            <img class="qr" src="assets/qrcodes/qr_donate.png" alt="捐助二维码 - 扫码支持公益" loading="lazy" />
-            <figcaption class="qr-caption">微信扫一扫</figcaption>
-        </figure>
-
-        <figure class="qr-card">
-            <img class="qr" src="assets/qrcodes/qr_animals.png" alt="捐助二维码 - 扫码支持公益" loading="lazy" />
-            <figcaption class="qr-caption">支付宝扫一扫</figcaption>
-        </figure>
+    <!-- 语言切换 -->
+    <div class="lang-switch" role="tablist" aria-label="语言选择">
+        <button id="btn-zh" role="tab" aria-selected="false" tabindex="0">简体中文</button>
+        <button id="btn-en" role="tab" aria-selected="false" tabindex="0">English</button>
     </div>
+
+    <!-- 中文内容 -->
+    <main id="content-zh" class="lang-content" lang="zh-CN">
+        <h1>关于本应用</h1>
+        <p>这是一个公益辅助App，对于沉迷者而言，直接的劝戒往往收效甚微。唯有帮助其自主矫正认知，促其自我觉醒才能彻底戒除，回归正常生活。如此则善莫大焉。</p>
+        
+        <h2>1. 隐私政策</h2>
+        <p>此App不收集任何用户信息和设备信息，无需联网、注册，无需登录，激活，亦不接任何广告，所有数据仅保存在本机。</p>
+
+        <h2>2. 版权声明</h2>
+        <p>本软件为免费公益App，本软件及其源代码的著作权归软件作者所有，受相关法律保护。您可自由免费使用或复制，但禁止对软件进行任何修改、再发行、出售、反向工程、破解或用于任何商业目的。否则以侵权论，并依法追究法律责任。</p>
+
+        <h2>3. 免责声明</h2>
+        <p>本软件及作者并不对本软件所载的资料信息，包括但不限于文本、图片、数据、观点、建议等材料和内容的准确性、完整性、充分性和可靠性作出保证，也不对这些材料和内容作出任何明示或默示的的保证，并且明确声明不对这些材料和内容的错误或遗漏承担责任。</p>
+        <p>请务必从正规应用商店下载安装本软件，用户下载后应自行采取必要的安全防护措施。本软件及作者不承担因您使用或不能使用此软件，或使用经第三方破解/出售的软件所导致的任何直接、间接或意外的损害责任，也不承担因您违反本声明或触犯中华人民共和国法律而引起的任何法律责任。</p>
+        <p>如您不同意本声明的任何条款，请立即停止使用并卸载本软件。您继续使用本软件的功能或使用的任何行为，均被视为您已充分阅读、理解并无条件接受本声明的全部内容。</p>
+
+        <h2>4. 自愿捐助</h2>
+        <p>本软件可自由免费使用，如果您也认同此理念并愿意支持公益，可自愿扫码捐助，所得捐助款项将继续用于公益以及流浪动物救助。</p>
+
+        <!-- 二维码区块 -->
+        <div class="qr-section" aria-label="捐助与关注二维码">
+            <figure class="qr-card">
+                <img class="qr" src="assets/qrcodes/qr_donate.png" alt="捐助二维码 - 扫码支持公益" loading="lazy" />
+                <figcaption class="qr-caption">微信扫一扫</figcaption>
+            </figure>
+
+            <figure class="qr-card">
+                <img class="qr" src="assets/qrcodes/qr_animals.png" alt="捐助二维码 - 扫码支持公益" loading="lazy" />
+                <figcaption class="qr-caption">支付宝扫一扫</figcaption>
+            </figure>
+        </div>
+    </main>
+
+    <!-- English content -->
+    <main id="content-en" class="lang-content" lang="en-US">
+        <h1>About This App</h1>
+        <p>This is a public-interest app. For those struggling with addiction, direct scolding rarely helps. Only by helping them correct their own thinking and awaken to the truth can they truly quit and return to a normal life - and that is a great good.</p>
+        
+        <h2>1. Privacy Policy</h2>
+        <p>This app collects no user or device information. It needs no internet, registration, login, or activation, shows no ads, and keeps all data only on your device.</p>
+
+        <h2>2. Copyright Notice</h2>
+        <p>This is a free public-interest app. Its copyright, including the source code, belongs to the author and is protected by law. You may use or copy it freely, but you may not modify, redistribute, sell, reverse-engineer, crack, or use it for any commercial purpose. Violations will be treated as infringement and pursued under the law.</p>
+
+        <h2>3. Disclaimer</h2>
+        <p>Neither this software nor its author guarantees the accuracy, completeness, adequacy, or reliability of any information provided, including but not limited to text, images, data, opinions, and advice, nor offers any express or implied warranty, and expressly disclaims liability for any errors or omissions.</p>
+        <p>Download and install the app only from official app stores, and take your own necessary security precautions afterward. Neither the software nor its author is liable for any direct, indirect, or incidental damages arising from your use or inability to use the software, or from using software cracked or sold by third parties, nor for any legal responsibility arising from your breach of this statement or violation of the laws of the People's Republic of China.</p>
+        <p>If you do not agree to any term of this statement, stop using the app and uninstall it immediately. Any continued use of the app or any of its features constitutes your full reading, understanding, and unconditional acceptance of this entire statement.</p>
+
+        <h2>4. Voluntary Donation</h2>
+        <p>This app is free to use. If you share our mission and wish to support it, you may scan the code to donate. All donations go toward public-interest work and stray-animal rescue.</p>
+
+        <!-- QR block -->
+        <div class="qr-section" aria-label="Scan to Donate">
+            <figure class="qr-card">
+                <img class="qr" src="assets/qrcodes/qr_donate.png" alt="Donation QR - scan to support public interest" loading="lazy" />
+                <figcaption class="qr-caption">WeChat Scan</figcaption>
+            </figure>
+
+            <figure class="qr-card">
+                <img class="qr" src="assets/qrcodes/qr_animals.png" alt="Donation QR - scan to support public interest" loading="lazy" />
+                <figcaption class="qr-caption">Alipay Scan</figcaption>
+            </figure>
+        </div>
+    </main>
+
+    <script>
+        // Language helper: read from URL query (?lang=) or hash (#en), then localStorage, then navigator.language
+        function getLangFromURL() {
+            try {
+                const params = new URLSearchParams(window.location.search);
+                const q = params.get('lang');
+                if (q) return q.toLowerCase();
+            } catch (e) {}
+            if (window.location.hash) {
+                const h = window.location.hash.replace('#','').toLowerCase();
+                if (h === 'en' || h === 'zh') return h;
+            }
+            return null;
+        }
+
+        function detectNavigatorLang() {
+            const nav = (navigator.language || navigator.userLanguage || '').toLowerCase();
+            if (nav.startsWith('zh')) return 'zh';
+            return 'en';
+        }
+
+        const btnZh = document.getElementById('btn-zh');
+        const btnEn = document.getElementById('btn-en');
+        const contentZh = document.getElementById('content-zh');
+        const contentEn = document.getElementById('content-en');
+
+        function updateURL(lang) {
+            // Update query param and hash without reloading
+            try {
+                const url = new URL(window.location.href);
+                url.searchParams.set('lang', lang);
+                url.hash = lang;
+                history.replaceState(null, '', url.toString());
+            } catch (e) {}
+        }
+
+        function setLang(lang, options = { updateUrl: true, save: true }) {
+            if (lang === 'en') {
+                contentEn.classList.add('active');
+                contentZh.classList.remove('active');
+                btnEn.classList.add('active');
+                btnZh.classList.remove('active');
+                btnEn.setAttribute('aria-selected', 'true');
+                btnZh.setAttribute('aria-selected', 'false');
+                document.documentElement.lang = 'en';
+                document.title = 'About This App & Privacy Policy';
+            } else {
+                contentZh.classList.add('active');
+                contentEn.classList.remove('active');
+                btnZh.classList.add('active');
+                btnEn.classList.remove('active');
+                btnZh.setAttribute('aria-selected', 'true');
+                btnEn.setAttribute('aria-selected', 'false');
+                document.documentElement.lang = 'zh-CN';
+                document.title = '关于本应用及隐私政策';
+                lang = 'zh';
+            }
+
+            if (options.save) localStorage.setItem('site-lang', lang);
+            if (options.updateUrl) updateURL(lang);
+        }
+
+        // Event listeners & keyboard navigation
+        btnZh.addEventListener('click', () => setLang('zh'));
+        btnEn.addEventListener('click', () => setLang('en'));
+
+        // keyboard support: Left/Right to move, Space/Enter to activate
+        const buttons = [btnZh, btnEn];
+        buttons.forEach((btn, idx) => {
+            btn.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    buttons[(idx + 1) % buttons.length].focus();
+                } else if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    buttons[(idx - 1 + buttons.length) % buttons.length].focus();
+                } else if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    btn.click();
+                }
+            });
+        });
+
+        // Initialize language: priority URL -> hash -> localStorage -> navigator
+        (function initLang() {
+            const fromUrl = getLangFromURL();
+            if (fromUrl === 'en' || fromUrl === 'zh') {
+                setLang(fromUrl, { updateUrl: false, save: true });
+                return;
+            }
+            const saved = localStorage.getItem('site-lang');
+            if (saved === 'en' || saved === 'zh') {
+                setLang(saved, { updateUrl: true, save: true });
+                return;
+            }
+            const nav = detectNavigatorLang();
+            setLang(nav, { updateUrl: true, save: true });
+        })();
+    </script>
 </body>
 </html>
